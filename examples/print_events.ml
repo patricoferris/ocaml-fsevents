@@ -43,12 +43,17 @@ let timer =
   in
   print_time ()
 
+let ignore_thread (x : Cf.RunLoop.t Lwt.t) =
+  let open Lwt.Infix in
+  x >|= fun _ -> ()
+
 ;;
 Lwt.(
   async (fun () ->
-      Cf_lwt.RunLoop.run_thread (fun runloop ->
-          Fsevents.schedule_with_run_loop event_stream runloop run_loop_mode;
-          if not (Fsevents.start event_stream) then
-            prerr_endline "failed to start FSEvents stream")));
+      ignore_thread
+      @@ Cf_lwt.RunLoop.run_thread (fun runloop ->
+             Fsevents.schedule_with_run_loop event_stream runloop run_loop_mode;
+             if not (Fsevents.start event_stream) then
+               prerr_endline "failed to start FSEvents stream")));
 Lwt.async (fun () -> print_events);
 Lwt_main.run timer
