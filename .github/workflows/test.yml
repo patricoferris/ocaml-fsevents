@@ -13,7 +13,7 @@ jobs:
       with:
         ocaml-version: ${{ matrix.ocaml-version }}
     - name: Pinning Package
-      run: opam pin add -n -y fsevents.0.3.0
+      run: opam pin add -n -y fsevents.0.3.0 .
     - name: Packages
       run: opam depext -yt fsevents.0.3.0
     - name: Dependencies
@@ -21,7 +21,7 @@ jobs:
     - name: Pinning Package
       run: opam pin add -n -y fsevents-lwt
     - name: Packages
-      run: opam depext -yt fsevents-lwt 
+      run: opam depext -yt fsevents-lwt . 
     - name: Dependencies
       run: opam install -t -y fsevents-lwt  --deps-only
     - name: Building
