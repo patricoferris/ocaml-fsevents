@@ -5,3 +5,4 @@ _tests
 _opam
 *.install
 .merlin
+.vscode
