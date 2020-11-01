@@ -19,9 +19,9 @@ jobs:
     - name: Dependencies
       run: opam install -t -y fsevents.0.3.0 --deps-only
     - name: Pinning Package
-      run: opam pin add -n -y fsevents-lwt
+      run: opam pin add -n -y fsevents-lwt .
     - name: Packages
-      run: opam depext -yt fsevents-lwt . 
+      run: opam depext -yt fsevents-lwt
     - name: Dependencies
       run: opam install -t -y fsevents-lwt  --deps-only
     - name: Building
