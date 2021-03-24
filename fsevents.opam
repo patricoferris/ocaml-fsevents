@@ -21,7 +21,7 @@ depends: [
 available: [os = "macos"]
 
 pin-depends: [
-  ["cf.dev" "git+https://github.com/mirage/ocaml-cf.git"]
+  ["cf.dev" "git+https://github.com/patricoferris/ocaml-cf#50f51e0c88782b8006db8c827bf914631a1fbaf8"]
 ]
 
 synopsis: """

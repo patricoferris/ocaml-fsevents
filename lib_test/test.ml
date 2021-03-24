@@ -80,7 +80,7 @@ let with_temp_stream f () =
     after_runloop
   in
 
-  Lwt_main.run lwt;
+  Lwt_main.run (Lwt.catch (fun () -> lwt) (function _ -> Lwt.return_unit));
 
   Unix.(match system ("rm -r "^dir) with
     | WEXITED 0 -> ()
